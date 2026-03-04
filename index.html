@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yusuf ❤️ Addy</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
+    font-family: 'Segoe UI', sans-serif;
+    overflow:hidden;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:420px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    animation:fadeIn 1s ease;
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+#nextBtn{
+    background:white;
+    color:#ff4d6d;
+}
+
+#yesBtn{
+    background:#00c853;
+    color:white;
+    box-shadow:0 0 15px #00ff88;
+}
+
+#noBtn{
+    background:#d50000;
+    color:white;
+}
+
+.shake{
+    animation:shake 0.4s;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-6px);}
+    50%{transform:translateX(6px);}
+    75%{transform:translateX(-6px);}
+    100%{transform:translateX(0);}
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.9);}
+    to{opacity:1; transform:scale(1);}
+}
+
+.ring{
+    font-size:60px;
+    animation:pop 0.6s ease forwards;
+}
+
+@keyframes pop{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="content">
+<h1>Addy please click here ❤️</h1>
+<button id="nextBtn" onclick="startMusic(); stepTwo()">Click 💖</button>
+</div>
+
+<audio id="music" loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let noCount = 0;
+let yesScale = 1;
+
+function startMusic(){
+document.getElementById("music").play();
+}
+
+function typeWriter(text, elementId){
+let i=0;
+document.getElementById(elementId).innerHTML="";
+function typing(){
+if(i < text.length){
+document.getElementById(elementId).innerHTML += text.charAt(i);
+i++;
+setTimeout(typing,40);
+}
+}
+typing();
+}
+
+function stepTwo(){
+document.getElementById("content").innerHTML = `
+<p id="story"></p>
+<br>
+<button id="nextBtn" onclick="stepThree()">Continue 💕</button>
+`;
+typeWriter("You are my peace, my happiness, my future. I don’t just love you for today… I love you for forever.", "story");
+}
+
+function stepThree(){
+document.getElementById("content").innerHTML = `
+<h2>Will you be with me forever? 💍</h2>
+<button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+<button id="noBtn" onclick="begging()">No 😅</button>
+`;
+}
+
+function sayYes(){
+document.getElementById("content").innerHTML = `
+<div class="ring">💍</div>
+<h2>She said YES!!! ❤️</h2>
+<p>Yusuf & Addy Forever ✨</p>
+`;
+}
+
+function begging(){
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+
+const messages=[
+"Please Addy 🥺",
+"I promise to love you forever ❤️",
+"I will protect and cherish you 💕",
+"You are my answered prayer 😭",
+"I’m not giving up on us 💍"
+];
+
+if(noCount < messages.length){
+noBtn.innerHTML = messages[noCount];
+noBtn.classList.add("shake");
+setTimeout(()=>noBtn.classList.remove("shake"),400);
+
+yesScale += 0.2;
+yesBtn.style.transform="scale("+yesScale+")";
+
+noCount++;
+}else{
+noBtn.innerHTML="Destiny says YES 😂❤️";
+}
+}
+
+</script>
+
+</body>
+</html>
